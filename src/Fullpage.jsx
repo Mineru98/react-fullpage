@@ -18,6 +18,7 @@ class Fullpage extends PureComponent {
     ])),
     className: PropTypes.string,
     onChange: PropTypes.func,
+    onChangeIndex: PropTypes.func,
     keyboardShortcut: PropTypes.bool,
   };
 
@@ -31,6 +32,7 @@ class Fullpage extends PureComponent {
     },
     className: '',
     onChange: null,
+    onChangeIndex: null,
     keyboardShortcut: true,
   };
 
@@ -225,6 +227,7 @@ class Fullpage extends PureComponent {
     const {
       transitionTiming,
       onChange,
+      onChangeIndex,
     } = this.props;
 
     if (slide !== newSlide) {
@@ -263,6 +266,9 @@ class Fullpage extends PureComponent {
       // call back function
       if (typeof onChange === "function") {
         onChange(this.state);
+      }
+      if (typeof onChangeIndex === "function") {
+        onChangeIndex(newSlide);
       }
     }
 
