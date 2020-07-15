@@ -55,36 +55,38 @@ class FullpageNavigation extends PureComponent {
         }}
       >
         {slides.map((slide, i) => {
-          if (i != 0 || i != slides.length - 1) {
-            return (
-              <div key={i.toString()}>
-                <div
-                  style={{
-                    borderRadius: "50%",
-                    height: number === i ? 14 : 10,
-                    width: number === i ? 14 : 10,
-                    margin: number === i ? 3 : 5,
-                    backgroundColor: reverse ? "white" : "black",
-                    opacity: number === i ? 1 : 0.5,
-                    transition: `all ${transitionTiming * 0.5}ms ease-in-out`,
-                    ...itemStyle,
-                  }}
-                  onClick={() => gotoSlide(slide)}
-                  onKeyPress={() => gotoSlide(slide)}
-                  role="button"
-                  tabIndex="-1"
-                  aria-label={`Slide ${i}`}
-                >
-                  <span
+          if (i !== 0) {
+            if (i !== slides.length - 1) {
+              return (
+                <div key={i.toString()}>
+                  <div
                     style={{
-                      display: "none",
+                      borderRadius: "50%",
+                      height: number === i ? 14 : 10,
+                      width: number === i ? 14 : 10,
+                      margin: number === i ? 3 : 5,
+                      backgroundColor: reverse ? "white" : "black",
+                      opacity: number === i ? 1 : 0.5,
+                      transition: `all ${transitionTiming * 0.5}ms ease-in-out`,
+                      ...itemStyle,
                     }}
+                    onClick={() => gotoSlide(slide)}
+                    onKeyPress={() => gotoSlide(slide)}
+                    role="button"
+                    tabIndex="-1"
+                    aria-label={`Slide ${i}`}
                   >
-                    {`slide number ${i}`}
-                  </span>
+                    <span
+                      style={{
+                        display: "none",
+                      }}
+                    >
+                      {`slide number ${i}`}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            );
+              );
+            }
           }
         })}
       </div>
